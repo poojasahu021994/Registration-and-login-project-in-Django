@@ -36,8 +36,16 @@ def register(request):
            if user:
                 x="Email already exist"
                 return render(request,'register.html',{'msg':x})
-           Registration.objects.create(customer_name=customer_name,customer_Email=customer_Email,customer_details=customer_details,customer_Number=customer_Number,customer_DOB=customer_DOB,customer_Volume=customer_Volume,customer_Education=customer_Education,customer_Gender=customer_Gender,customer_Image=customer_Image,customer_Resume=customer_Resume)
+           else:
+                if password==cpassword:
+                    Registration.objects.create(customer_name=customer_name,customer_Email=customer_Email,customer_details=customer_details,customer_Number=customer_Number,customer_DOB=customer_DOB,customer_Volume=customer_Volume,customer_Education=customer_Education,customer_Gender=customer_Gender,customer_Image=customer_Image,customer_Resume=customer_Resume,password=password)
+                    x="Registration Sucessfully"
+                    return render(request,'login.html',{'msg':x})
+                else:
+                    x="password and confirm password not match"
+                    return render(request,'register.html',{'msg':x,'name':customer_name,'customer_Email':customer_Email,'customer_details':customer_details,'customer_Number':customer_Number,'customer_DOB':customer_DOB,'customer_Volume':customer_Volume,'customer_Gender':customer_Gender,'customer_Image':customer_Image,'customer_Resume':customer_Resume,'password':password})          
         else:
             return render(request,'register.html')
 def login(request): 
     return render(request,'login.html')
+# 

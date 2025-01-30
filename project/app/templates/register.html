@@ -10,20 +10,20 @@
     <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
        <label for="username">Name:</label>
-       <input type="text" name="username" placeholder="Enter your name">
+       <input type="text" name="username" value='{{name}}' placeholder="Enter your name">
        <br>
        <label for="email">Email:</label>
-       <input type="email" name="email" placeholder="Enter your email">
+       <input type="email" name="email" value="{{customer_Email}}" placeholder="Enter your email">
        <br>
        <label for="detail">Description:</label>
-       <textarea name="detail" cols="20" rows="5"></textarea>
+       <textarea name="detail" value='{{customer_details}}' cols="20" rows="5"></textarea>
        <br>
        <label for="phone">Contact:</label>
-       <input type="tel" name="phone" placeholder="Enter your phone number">
+       <input type="tel" name="phone" value='{{customer_Number}}' placeholder="Enter your phone number">
        <br>
        <br>
        <label for="dob">DOB:</label>
-       <input type="date" name="dob">
+       <input type="date" name="dob" value='{{customer_DOB}}'>
        <label for="volume">Volume:</label>
         <input
            type="range"
@@ -38,24 +38,24 @@
        <br>
        <br>
        <label for="subscribe">Education:</label>
-       <input type="checkbox" name="subject" value="one" >B.Tech
-       <input type="checkbox" name="subject" value="two" >M.Tech
-       <input type="checkbox" name="subject" value="three">P.hd
+       <input type="checkbox" name="subject" value='one'>B.Tech
+       <input type="checkbox" name="subject" value='tow' >M.Tech
+       <input type="checkbox" name="subject" value='three'>P.hd
        
        <br>
        <label for="gender">Gender:</label>
-       <input type="radio" name="gender" value="male"> Male
-       <input type="radio" name="gender" value="female"> Female
+       <input type="radio" name="gender" value='Male'> Male
+       <input type="radio" name="gender" value='Female'> Female
        <br>
        <label for="profile-pic">Image:</label>
-       <input type="file" name="profile-pic" accept=".jpeg, .png" >
+       <input type="file" name="profile-pic" value='{{customer_Image}}' accept=".jpeg, .png"  >
        <br>
    
        <label for="resume">Resume:</label>
-       <input type="file" name="resume" accept=".pdf, .doc" >
+       <input type="file" name="resume" value='{{customer_Resume}}' accept=".pdf, .doc"  >
        <br>
        <label for="password">Password:</label>
-       <input type="password" name="password">
+       <input type="password" name="password" value='{{password}}'>
        <br>
        <label for="password">Con_Password:</label>
        <input type="password" name="cpassword">
