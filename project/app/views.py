@@ -47,5 +47,34 @@ def register(request):
         else:
             return render(request,'register.html')
 def login(request): 
-    return render(request,'login.html')
+    if request.method=='POST':
+         email=request.POST.get('email')
+         password=request.POST.get('Password')
+         user=Registration.objects.filter(customer_Email=email)
+         print(user)
+         if user:
+              data=Registration.objects.get(customer_Email=email)
+            #   print(data.customer_name)
+            #   print(data.customer_Email)
+            #   print(data.customer_details)
+            #   print(data.customer_DOB)
+            #   print(data.customer_Number)
+            #   print(data.customer_Education)
+            #   print(data.customer_Gender)
+            #   print(data.customer_Image)
+            #   print(data.customer_Volume)
+            #   print(data.customer_Resume)
+            #   print(data.password)
+              pass1=data.password
+              print(pass1,password)
+              if pass1==password:
+                   return render(request,'dashboard.html',{'name':data.customer_name,'email':data.customer_Email,})
+              else:
+                   x="Email and password not match"
+                   return render(request,'login.html',{'msg':x})
+         else:
+              x="Email id not exist"
+              return render(request,register,'register.html',{'msg':x})
+    else:
+         return render(request,'login.html')
 # 
