@@ -54,21 +54,25 @@ def login(request):
          print(user)
          if user:
               data=Registration.objects.get(customer_Email=email)
-            #   print(data.customer_name)
-            #   print(data.customer_Email)
-            #   print(data.customer_details)
-            #   print(data.customer_DOB)
-            #   print(data.customer_Number)
-            #   print(data.customer_Education)
-            #   print(data.customer_Gender)
-            #   print(data.customer_Image)
-            #   print(data.customer_Volume)
-            #   print(data.customer_Resume)
-            #   print(data.password)
+              user_data={
+                  'name':data.customer_name,
+                  'email':data.customer_Email,
+                  'details':data.customer_details,
+                  'DBO':data.customer_DOB,
+                  'number':data.customer_Number,
+                  'educatio':data.customer_Education,
+                  'gender':data.customer_Gender,
+                  'image':data.customer_Image,
+                  'volume':data.customer_Volume,
+                  'resume':data.customer_Resume,
+                  'password':data.password,
+                  }
+              print(user_data)
               pass1=data.password
               print(pass1,password)
               if pass1==password:
-                   return render(request,'dashboard.html',{'name':data.customer_name,'email':data.customer_Email,})
+                   return render(request,'dashboard.html',{'name':data.customer_name,'email':data.customer_Email,'data':user_data})
+                    #  return redirect('dashboard')
               else:
                    x="Email and password not match"
                    return render(request,'login.html',{'msg':x})
