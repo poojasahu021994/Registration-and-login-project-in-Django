@@ -76,6 +76,7 @@ def login(request):
               else:
                    x="Email and password not match"
                    return render(request,'login.html',{'msg':x})
+              
          else:
               x="Email id not exist"
               return render(request,register,'register.html',{'msg':x})
